@@ -1,7 +1,7 @@
 {
-  "name": "d",
+  "name": "DD5E_Paladin_Char_Sheet",
   "version": "1.0.0",
-  "description": "D: An Ionic project",
+  "description": "DD5E_Paladin_Char_Sheet: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
