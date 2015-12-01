@@ -1,0 +1,24 @@
+<div class="modal">
+    <!-- Modal header bar -->
+    <ion-header-bar class="bar-secondary">
+        <h1 class="title">New Character</h1>
+        <button class="button button-clear button-positive" ng-click="closeNewCharacter()">Cancel</button>
+    </ion-header-bar>
+
+    <!-- Modal content area -->
+    <ion-content>
+
+        <form ng-submit="createCharacter(char)">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" placeholder="What is character name?" ng-model="char.name">
+                </label>
+            </div>
+            <div class="padding">
+                <button type="submit" class="button button-block button-positive">Create Character</button>
+            </div>
+        </form>
+
+    </ion-content>
+
+</div>

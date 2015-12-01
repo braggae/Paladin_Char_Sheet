@@ -3,8 +3,8 @@ angular.module('starter.controllers', ['ionic'])
 .controller('MenuCtrl', function($scope, $timeout, $ionicModal, Characters, $ionicSideMenuDelegate) {
     // A utility function for creating a new project
     // with the given projectTitle
-    var createCharacter = function(charName, charClass) {
-        var newCharacter = Characters.newCharacter({name:charName, class:charClass});
+    var createCharacter = function(char) {
+        var newCharacter = Characters.newCharacter({name:char.name, class:char.class});
         $scope.characters.push(newCharacter);
         Characters.save($scope.characters);
         $scope.selectCharacter(newCharacter, $scope.characters.length-1);
@@ -39,6 +39,22 @@ angular.module('starter.controllers', ['ionic'])
                 }
             }
         }
+    });
+
+    $scope.newCharacter = function(){
+        $scope.newCharModal.show();
+    };
+
+    $scope.closeNewCharacter = function(){
+        $scope.newCharModal.hide();
+    };
+
+    // Create and load the new char Modal
+    $ionicModal.fromTemplateUrl('templates/modals/new-char.html', function(modal) {
+        $scope.newCharModal = modal;
+    }, {
+        scope: $scope,
+        animation: 'slide-in-up'
     });
 
 
