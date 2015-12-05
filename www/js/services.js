@@ -1,5 +1,45 @@
 angular.module('starter.services', [])
-    .factory('Characters', function() {
+
+    .factory('Classes', ['CHAR_PARAMS',function(CHAR_PARAMS){
+        var classes = {
+            paladin : {
+                title:'Paladin',
+                spellCastingParam : CHAR_PARAMS.CHA,
+                hitDie : '1d10',
+                damageAbility : CHAR_PARAMS.STR
+            }
+        };
+
+
+        return {
+            all: function() {
+                return classes;
+            },
+            get: function(classId) {
+                return classes[classId];
+            }
+        };
+    }])
+
+    .factory('Races', function(){
+        var classes = {
+            human : {
+                title:'Human',
+                speed: 30
+            }
+        };
+
+        return {
+            all: function() {
+                return classes;
+            },
+            get: function(classId) {
+                return classes[classId];
+            }
+        };
+    })
+
+    .factory('Characters', ['Classes', 'Races',function(Classes, Races) {
       return {
           all: function(){
               var charString = window.localStorage['characters'];
@@ -9,10 +49,20 @@ angular.module('starter.services', [])
               return [];
           },
           save: function(char) {
+              console.log(char);
               window.localStorage['characters'] = angular.toJson(char);
           },
           newCharacter: function(char){
+              console.log(char);
+              var Class = Classes.get(char.class);
+              var Race = Races.get(char.race);
               char.level = 1;
+              char.proficiencyBonus = 2;
+              char.experiencePoints = 0;
+              char.hitDie = Class.hitDie;
+              char.spellCastingParam = Class.spellCastingParam;
+              char.damageAbility = Class.damageAbility;
+              char.speed = Race.speed;
               return char;
           },
 
@@ -23,7 +73,7 @@ angular.module('starter.services', [])
               window.localStorage['lastActiveProject'] = index;
           }
       }
-    });
+    }]);
 //.factory('Chats', function() {
 //  // Might use a resource here that returns a JSON array
 //

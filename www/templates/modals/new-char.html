@@ -13,6 +13,18 @@
                 <label class="item item-input">
                     <input type="text" placeholder="What is character name?" ng-model="char.name">
                 </label>
+                <label class="item item-input">
+                    <select name="classSelect" id="classSelect" ng-model="char.class">
+                        <!--<option ng-repeat="option in Classes.all()" value="{{option.title}}">{{option.title}}</option>-->
+                        <option value="paladin">Paladin</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <select name="raceSelect" id="raceSelect" ng-model="char.race">
+                        <!--<option ng-repeat="option in Classes.all()" value="{{option.title}}">{{option.title}}</option>-->
+                        <option value="human">Human</option>
+                    </select>
+                </label>
             </div>
             <div class="padding">
                 <button type="submit" class="button button-block button-positive">Create Character</button>
