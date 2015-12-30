@@ -10,24 +10,79 @@
 
         <form ng-submit="createCharacter(char)">
             <div class="list">
-                <label class="item item-input">
+                <label class="item item-input ">
                     <input type="text" placeholder="What is character name?" ng-model="char.name">
                 </label>
-                <label class="item item-input">
+                <label class="item item-divider">
+                    General Data
+                </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Class
+                    </div>
                     <select name="classSelect" id="classSelect" ng-model="char.class">
                         <!--<option ng-repeat="option in Classes.all()" value="{{option.title}}">{{option.title}}</option>-->
                         <option value="paladin">Paladin</option>
                     </select>
                 </label>
-                <label class="item item-input">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Race
+                    </div>
                     <select name="raceSelect" id="raceSelect" ng-model="char.race">
-                        <!--<option ng-repeat="option in Classes.all()" value="{{option.title}}">{{option.title}}</option>-->
+                        <!--<option ng-repeat="option in Races.all()" value="{{option.title}}">{{option.title}}</option>-->
                         <option value="human">Human</option>
                     </select>
                 </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Alignment
+                    </div>
+                    <select name="raceSelect" id="alignmentSelect" ng-model="char.alignment">
+                        <option value="LG">Lawful Good</option>
+                        <option value="NG">Neutral Good</option>
+                        <option value="CG">Chaotic Good</option>
+                        <option value="LN">Lawful Neutral</option>
+                        <option value="NN">True Neutral</option>
+                        <option value="CN">Chaotic Neutral</option>
+                        <option value="LE">Lawful Evil</option>
+                        <option value="NE">Neutral Evil</option>
+                        <option value="CE">Chaotic Evil</option>
+                    </select>
+                </label>
+                <label class="item item-input ">
+                    <input type="number" placeholder="What is max hp?" ng-model="char.max_hp">
+                </label>
+                <label class="item item-divider">
+                    Abilities
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">STRENGTH</span>
+                    <input type="number" ng-model="char.abilities.STRENGTH" min="1" max="20" placeholder="STRENGTH">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">DEXTERITY</span>
+                    <input type="number" ng-model="char.abilities.DEXTERITY" min="1" max="20" placeholder="DEXTERITY">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">CONSTITUTION</span>
+                    <input type="number" ng-model="char.abilities.CONSTITUTION" min="1" max="20" placeholder="CONSTITUTION">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">INTELLIGENCE</span>
+                    <input type="number" ng-model="char.abilities.INTELLIGENCE" min="1" max="20"  placeholder="INTELLIGENCE">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">WISDOM</span>
+                    <input type="number" ng-model="char.abilities.WISDOM" min="1" max="20" placeholder="WISDOM">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">CHARISMA</span>
+                    <input type="number" ng-model="char.abilities.CHARISMA" min="1" max="20" placeholder="CHARISMA">
+                </label>
             </div>
             <div class="padding">
-                <button type="submit" class="button button-block button-positive">Create Character</button>
+                <button type="submit" class="button button-full icon-right ion-chevron-right button-positive">Create Character</button>
             </div>
         </form>
 

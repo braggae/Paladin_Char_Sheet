@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ionic'])
 
-    .controller('MenuCtrl', function ($scope, $timeout, $ionicModal, Characters, $ionicSideMenuDelegate) {
+    .controller('MainCtrl', function ($scope, $timeout, $ionicModal, Characters, $ionicSideMenuDelegate, CHAR_PARAMS, ABILITY_SCORE_MODIFIER_DICTIONARY) {
         //console.log(Characters);
 
         var createCharacter = function (char) {
@@ -16,6 +16,7 @@ angular.module('starter.controllers', ['ionic'])
 
             // Grab the last active, or the first project
             $scope.activeCharacter = $scope.characters[Characters.getLastActiveIndex()];
+            console.info($scope.activeCharacter);
         };
         $scope.initData();
 
@@ -55,13 +56,33 @@ angular.module('starter.controllers', ['ionic'])
             scope: $scope,
             animation: 'slide-in-up'
         });
-
-
+        $scope.getAbilityModifier = function(abilityScore){
+            return ABILITY_SCORE_MODIFIER_DICTIONARY[abilityScore];
+        }
     })
-    .directive('baseInfo', function (Characters) {
+    .controller('ActionsCtrl', function($scope,$ionicModal, CHAR_PARAMS, ABILITY_SCORE_MODIFIER_DICTIONARY){
+
+        $scope.receiveDMG = function(){
+            $scope.activeCharacter.hp -= 2;
+        }
+    })
+    .directive('baseInfo', function () {
         return {
             restrict: 'E',
             templateUrl: './templates/base.html'
+        }
+    })
+    .directive('abilitiesInfo', function () {
+        return {
+            restrict: 'E',
+            templateUrl: './templates/abilities.html'
+        }
+    })
+    .directive('hpInfo', function () {
+        return {
+            restrict: 'E',
+            templateUrl: './templates/hp.html',
+            controller: 'ActionsCtrl'
         }
     });
 //

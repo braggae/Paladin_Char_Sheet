@@ -1,0 +1,8 @@
+<div class="abilities-info-container list">
+    <div  ng-repeat="(abilityName, abilityVal) in activeCharacter.abilities" class="item">
+        {{abilityName}} - {{abilityVal}}
+        <span class="item-note">
+          {{getAbilityModifier(abilityVal)}}
+        </span>
+    </div>
+</div>
