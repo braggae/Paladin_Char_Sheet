@@ -1,0 +1,25 @@
+<div class="modal">
+    <!-- Modal header bar -->
+    <ion-header-bar class="bar-secondary">
+        <h1 class="title">Roll result</h1>
+        <button class="button button-clear button-positive" ng-click="rollResult.hide()">Close</button>
+    </ion-header-bar>
+
+    <!-- Modal content area -->
+    <ion-content>
+
+            <div class="list">
+                <div class="text-center">
+                    <span class="text-center">Roll Total</span>
+                    <h1>{{lastDiceResult.throwTotal}}</h1>
+                </div>
+                <div class="text-center">
+                    <span class="text-center">Roll Explained</span>
+                    <h4>{{lastDiceResult.throwTitle}}</h4>
+                </div>
+
+            </div>
+
+    </ion-content>
+
+</div>

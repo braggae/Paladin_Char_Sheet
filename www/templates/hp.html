@@ -2,6 +2,6 @@
     <div class="item item-divider">
         Hit Point Maximum : {{activeCharacter.max_hp}}
     </div>
-    <h2 class="text-center"><a class="button button-icon icon ion-minus" ng-click="receiveDMG()"></a> {{activeCharacter.hp}}
-        <a class="button button-icon icon ion-plus" ng-click="healHP()"></a></h2>
+    <h2 class="text-center"><a class="button button-icon icon ion-minus" ng-click="hpReduceModal.show()"></a> {{activeCharacter.hp}}
+        <a class="button button-icon icon ion-plus" ng-click="hpHealModal.show()"></a></h2>
 </div>

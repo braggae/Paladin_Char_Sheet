@@ -1,0 +1,26 @@
+<div class="modal">
+    <!-- Modal header bar -->
+    <ion-header-bar class="bar-secondary">
+        <h1 class="title">Heal HP</h1>
+        <button class="button button-clear button-positive" ng-click="hpHealModal.hide()">Cancel</button>
+    </ion-header-bar>
+
+    <!-- Modal content area -->
+    <ion-content>
+
+        <form name="dmg_form" ng-submit="healHP(hp)">
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Received DMG</span>
+                    <input type="number" placeholder="Heal HP" ng-model="hp">
+                </label>
+
+            </div>
+            <div class="padding">
+                <button type="submit" class="button button-full button-royal">Heal HP</button>
+            </div>
+        </form>
+
+    </ion-content>
+
+</div>

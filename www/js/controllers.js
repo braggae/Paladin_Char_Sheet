@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ionic'])
 
-    .controller('MainCtrl', function ($scope, $timeout, $ionicModal, Characters, $ionicSideMenuDelegate, CHAR_PARAMS, ABILITY_SCORE_MODIFIER_DICTIONARY) {
+    .controller('MainCtrl', function ($scope, $timeout, $ionicModal, Characters, Dice, $ionicSideMenuDelegate, CHAR_PARAMS, ABILITY_SCORE_MODIFIER_DICTIONARY) {
         //console.log(Characters);
 
         var createCharacter = function (char) {
@@ -56,20 +56,65 @@ angular.module('starter.controllers', ['ionic'])
             scope: $scope,
             animation: 'slide-in-up'
         });
+
         $scope.getAbilityModifier = function(abilityScore){
             return ABILITY_SCORE_MODIFIER_DICTIONARY[abilityScore];
         }
     })
-    .controller('ActionsCtrl', function($scope,$ionicModal, CHAR_PARAMS, ABILITY_SCORE_MODIFIER_DICTIONARY){
+    .controller('ActionsCtrl', function($scope, $ionicModal, Characters, Dice, CHAR_PARAMS, ABILITY_SCORE_MODIFIER_DICTIONARY){
 
-        $scope.receiveDMG = function(){
-            $scope.activeCharacter.hp -= 2;
+        $scope.receiveDMG = function(dmg){
+            $scope.activeCharacter.hp -= dmg;
+            saveChar();
+            $scope.hpReduceModal.hide();
+        };
+
+        $scope.healHP = function(hp){
+            var new_hp = $scope.activeCharacter.hp + hp;
+            $scope.activeCharacter.hp = ($scope.activeCharacter.max_hp <= new_hp)?$scope.activeCharacter.max_hp : new_hp;
+            saveChar();
+            $scope.hpHealModal.hide();
+        };
+
+
+        $scope.throwInitiative = function(){
+            var modifier = parseInt($scope.getAbilityModifier($scope.activeCharacter.abilities[CHAR_PARAMS.DEX]));
+            console.log($scope);
+            $scope.lastDiceResult = Dice.throwDice('1d20', modifier);
+            $scope.rollResult.show()
+        };
+
+        $ionicModal.fromTemplateUrl('templates/modals/hp-reduce.html', function (modal) {
+            $scope.hpReduceModal = modal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-up'
+        });
+
+        $ionicModal.fromTemplateUrl('templates/modals/hp-heal.html', function (modal) {
+            $scope.hpHealModal = modal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-up'
+        });
+
+        $ionicModal.fromTemplateUrl('templates/modals/roll-result.html', function (modal) {
+            $scope.rollResult = modal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-up'
+        });
+
+        var saveChar = function(){
+            $scope.characters[Characters.getLastActiveIndex()] = $scope.activeCharacter;
+            Characters.save($scope.characters);
         }
     })
     .directive('baseInfo', function () {
         return {
             restrict: 'E',
-            templateUrl: './templates/base.html'
+            templateUrl: './templates/base.html',
+            controller: 'ActionsCtrl'
         }
     })
     .directive('abilitiesInfo', function () {
